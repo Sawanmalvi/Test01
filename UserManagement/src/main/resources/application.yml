@@ -1,0 +1,61 @@
+server:
+  port: 7075
+
+spring:
+  application:
+    name: USER-MANAGEMENT
+  main:
+    web-application-type: servlet  # corrected spelling
+
+
+  # Database configurations
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservice?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA Hibernate settings
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+jwt:
+  secret: "jfgbrhguhdvbfhgjfvhgurhgjhbgfgjfdhgfdgfdgjfj"
+  expiration: 36000000
+
+
+
+
+# Eureka configurations
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7071/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  server:
+    enable-self-preservation: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when-authorized
+
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
+#    org.springframework.web: DEBUG
+#    reactor.netty.http.client: DEBUG
+#    reactor.netty.http.server: DEBUG
+logging:
+  level:
+    org.springframework.web: DEBUG
+
